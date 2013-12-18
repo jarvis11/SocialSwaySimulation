@@ -11,12 +11,14 @@ import java.lang.Integer;
 import  java.math.BigDecimal;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bhaskarravi
- * Date: 11/29/13
- * Time: 2:57 PM
- * To change this template use File | Settings | File Templates.
+ * Created by bhaskarravi on 11/29/13.
+ * Confidential property of SocialSway. All rights reserved.
+ *
+ * The DataParser class allows one to quickly parse through a Facebook data set and enter the data into
+ * the appropriate, workable Java objects.
+ *
  */
+
 public class DataParser {
 
     private ArrayList<Bid> bidSet;

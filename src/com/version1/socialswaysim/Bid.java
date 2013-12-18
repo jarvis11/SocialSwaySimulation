@@ -26,6 +26,15 @@ public class Bid {
 
     public double getCPA(){return CPA;}
 
+    /**
+     * Method: Calculate Cost
+     * @param adGroup - Calculates the total cost incurred by an ad group
+     * @return - Returns the total cost incurred by the adGroup
+     *
+     * NOTE: METHOD IS NOT COMPLETE. CPA ONLY TAKES INTO ACCOUNT LIKES
+     */
+
+
     public double calculateCost(AdGroup adGroup){
         double totalCost = CPM * adGroup.getUniqueImpressions() / 1000 +
                            CPC * adGroup.getUniqueClicks() +

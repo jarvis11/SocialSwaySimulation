@@ -66,7 +66,7 @@ public class HealthSimulationSocialSway {
         //INITIALIZE CAMPAIGN VARS
         double totalCost = 0;   //Total Cost Incurred by the Campaign
         int totalLikes = 0;     //Total Likes Accrued by Campaign
-        int likesGoal = 1500;   //Campaign Goal
+        int likesGoal = 3000;   //Campaign Goal
         int totalImpressions = 0; //Total Impressions Accrued by Campaign
         int totalClicks = 0;    //Total Clicks Accrued by Campaign
         double totalCPM = 0;    //Total CPM Cost of Campaign
@@ -102,8 +102,8 @@ public class HealthSimulationSocialSway {
                 totalCost += hourlyCost;
 
                 //UPDATE YOUR STATS
-                totalImpressions += impressionsList.get(hour);
-                totalClicks += clicksList.get(hour);
+                totalImpressions += impressionsList.get(hour) / 10;
+                totalClicks += clicksList.get(hour) / 10;
                 totalLikes += likesList.get(hour);
 
                 //PRINT RESULTS
@@ -111,8 +111,8 @@ public class HealthSimulationSocialSway {
                 System.out.printf("%-10.2f", costPerThousand[hour]);
                 System.out.printf("%-10.2f", costPerClick[hour]);
                 System.out.printf("%-10.2f", costPerAction[hour]);
-                System.out.printf("%-15.0f", (double)impressionsList.get(hour));
-                System.out.printf("%-10.0f", (double)clicksList.get(hour));
+                System.out.printf("%-15.0f", (double)impressionsList.get(hour) / 10);
+                System.out.printf("%-10.0f", (double)clicksList.get(hour) / 10);
                 System.out.printf("%-10.0f", (double)likesList.get(hour));
                 System.out.printf("%10.2f\n", hourlyCost);
             }
@@ -189,8 +189,8 @@ public class HealthSimulationSocialSway {
                     totalCost += hourlyCost;
 
                     //UPDATE YOUR STATS
-                    totalImpressions += impressionsList.get(hour);
-                    totalClicks += clicksList.get(hour);
+                    totalImpressions += impressionsList.get(hour) / 10;
+                    totalClicks += clicksList.get(hour) / 10;
                     totalLikes += likesList.get(hour);
 
                     //PRINT RESULTS
@@ -198,8 +198,8 @@ public class HealthSimulationSocialSway {
                     System.out.printf("%-10.2f", costPerThousand[hour]);
                     System.out.printf("%-10.2f", costPerClick[hour]);
                     System.out.printf("%-10.2f", costPerAction[hour]);
-                    System.out.printf("%-15.0f", (double)impressionsList.get(hour));
-                    System.out.printf("%-10.0f", (double)clicksList.get(hour));
+                    System.out.printf("%-15.0f", (double)impressionsList.get(hour) / 10);
+                    System.out.printf("%-10.0f", (double)clicksList.get(hour) / 10);
                     System.out.printf("%-10.0f", (double)likesList.get(hour));
                     System.out.printf("%10.2f\n", hourlyCost);
                 }

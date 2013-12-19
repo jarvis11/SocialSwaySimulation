@@ -94,8 +94,8 @@ public class EntertainmentSimulationStandard {
             totalCPA += costPerAction[i];
 
 
-            totalImpressions += impressions[i];
-            totalClicks += clicks[i];
+            totalImpressions += impressions[i] / 10;
+            totalClicks += clicks[i] / 5;
             totalLikes += likes[i];
             currentCost = (costPerThousand[i]*adGroupData.get(i).getUniqueImpressions()/1000) +
                     (costPerClick[i]*clicks[i]) + (costPerAction[i]*(likes[i] + clicks[i]));

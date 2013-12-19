@@ -53,7 +53,7 @@ public class HealthSimulationStandard {
 
         double totalCost = 0;
         int totalLikes = 0;
-        int likesGoal = 1500;
+        int likesGoal = 3000;
         int totalImpressions = 0;
         int totalClicks = 0;
         double totalCPM = 0;
@@ -88,8 +88,8 @@ public class HealthSimulationStandard {
             totalCPA += costPerAction[i];
 
 
-            totalImpressions += impressions[i];
-            totalClicks += clicks[i];
+            totalImpressions += impressions[i] / 10;
+            totalClicks += clicks[i] / 10;
             totalLikes += likes[i];
             currentCost = (costPerThousand[i]*adGroupData.get(i).getUniqueImpressions()/1000) +
                     (costPerClick[i]*clicks[i]) + (costPerAction[i]*(likes[i]));
@@ -101,8 +101,8 @@ public class HealthSimulationStandard {
             System.out.printf("%-10.2f", costPerThousand[i]);
             System.out.printf("%-10.2f", costPerClick[i]);
             System.out.printf("%-10.2f", costPerAction[i]);
-            System.out.printf("%-15.0f", impressions[i]);
-            System.out.printf("%-10.0f", clicks[i]);
+            System.out.printf("%-15.0f", impressions[i] / 10);
+            System.out.printf("%-10.0f", clicks[i] / 10);
             System.out.printf("%-10.0f", likes[i]);
             System.out.printf("%10.2f\n", currentCost);
 
@@ -138,7 +138,7 @@ public class HealthSimulationStandard {
         System.out.println("TOTAL LIKES: " + totalLikes);
         System.out.println("AVERAGE CPM: " + Math.round(totalCPM / i * 100.0) / 100.0 );
         System.out.println("AVERAGE CPC: " + Math.round(totalCPC / i * 100.0) / 100.0 );
-        System.out.println("AVERAGE CPA: " + Math.round(totalCPA / i * 100.0) / 100.0 );
+        System.out.println("AVERAGE CPA: " + Math.round(totalCost / totalLikes * 100.0) / 100.0 );
         System.out.println("CTR: " +  Math.round((totalClicks / (double) totalImpressions * 100)*100.0)/100.0 + "%" );
     }
 }

@@ -85,6 +85,7 @@ public class FashionSimulationStandard {
         while(totalLikes < likesGoal){
 
             costPerClick[i] = 0;
+            costPerThousand[i] = 0;
             totalCPM += costPerThousand[i];
             totalCPC += costPerClick[i];
             totalCPA += costPerAction[i];

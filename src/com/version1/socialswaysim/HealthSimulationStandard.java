@@ -3,16 +3,11 @@ package com.version1.socialswaysim;
 import java.util.ArrayList;
 
 /**
- * Created by bhaskarravi on 12/12/13.
+ * Created by bhaskarravi on 12/18/13.
  */
-public class AutosSimulationStandard {
-
-
+public class HealthSimulationStandard {
 
     public static void main(String[] args) {
-
-
-
         //Initialize both bid and adgroup datasets
         ArrayList<Bid> bidData = new ArrayList<Bid>();
         ArrayList<AdGroup> adGroupData = new ArrayList<AdGroup>();
@@ -20,15 +15,15 @@ public class AutosSimulationStandard {
         //Parse data
 
         DataParser obj = new DataParser();
-        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/SimulationDBs/Autos/Autos_BiddingSim_TEST.csv");
+        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/Health_BiddingSim_TEST.csv");
 
         //bidData contains all bidding data by hour
         //adGroupData contains all adgroup data by hour
 
         //Header
-        System.out.println("CAMPAIGN VERTICAL: Automotive");
+        System.out.println("CAMPAIGN VERTICAL: Health");
         System.out.println("CAMPAIGN GOAL: 3000 Page Likes");
-        System.out.println("ADVERTISEMENT TYPE: Page Post");
+        System.out.println("ADVERTISEMENT TYPE: Sponsored Story Page Post");
         System.out.println("BID TYPE: CPA, CPC, CPM");
         System.out.println("AD ACCOUNT: " + adGroupData.get(0).getAdAccountID());
         System.out.println("AD CAMPAIGN: " + adGroupData.get(0).getAdCampaignID());
@@ -37,7 +32,7 @@ public class AutosSimulationStandard {
         System.out.println("==================================");
         System.out.println();
 
-        System.out.printf("%-10s", "time");
+        System.out.printf("%-10s", "Time");
         System.out.printf("%-10s", "CPM");
         System.out.printf("%-10s", "CPC");
         System.out.printf("%-10s", "CPA");
@@ -58,7 +53,7 @@ public class AutosSimulationStandard {
 
         double totalCost = 0;
         int totalLikes = 0;
-        int likesGoal = 2500;
+        int likesGoal = 1500;
         int totalImpressions = 0;
         int totalClicks = 0;
         double totalCPM = 0;
@@ -81,41 +76,41 @@ public class AutosSimulationStandard {
 
 
         //run campaign while likes is less than likes goal
-            double currentCost;
-            int i = 0;
+        double currentCost;
+        int i = 0;
 
-            while(totalLikes < likesGoal){
+        while(totalLikes < likesGoal){
 
-                costPerClick[i] = 0;
-                costPerThousand[i] = 0;
-                totalCPM += costPerThousand[i];
-                totalCPC += costPerClick[i];
-                totalCPA += costPerAction[i];
+            costPerClick[i] = 0;
+            costPerThousand[i] = 0;
+            totalCPM += costPerThousand[i];
+            totalCPC += costPerClick[i];
+            totalCPA += costPerAction[i];
 
 
-                totalImpressions += impressions[i];
-                totalClicks += clicks[i];
-                totalLikes += likes[i];
-                currentCost = (costPerThousand[i]*adGroupData.get(i).getUniqueImpressions()/1000) +
-                        (costPerClick[i]*clicks[i]) + (costPerAction[i]*(likes[i] + clicks[i]));
-                totalCost += currentCost;
+            totalImpressions += impressions[i];
+            totalClicks += clicks[i];
+            totalLikes += likes[i];
+            currentCost = (costPerThousand[i]*adGroupData.get(i).getUniqueImpressions()/1000) +
+                    (costPerClick[i]*clicks[i]) + (costPerAction[i]*(likes[i]));
+            totalCost += currentCost;
 
 //
 
-                System.out.printf("%-10.0f",time[i]);
-                System.out.printf("%-10.2f", costPerThousand[i]);
-                System.out.printf("%-10.2f", costPerClick[i]);
-                System.out.printf("%-10.2f", costPerAction[i]);
-                System.out.printf("%-15.0f", impressions[i]);
-                System.out.printf("%-10.0f", clicks[i]);
-                System.out.printf("%-10.0f", likes[i]);
-                System.out.printf("%10.2f\n", currentCost);
+            System.out.printf("%-10.0f",time[i]);
+            System.out.printf("%-10.2f", costPerThousand[i]);
+            System.out.printf("%-10.2f", costPerClick[i]);
+            System.out.printf("%-10.2f", costPerAction[i]);
+            System.out.printf("%-15.0f", impressions[i]);
+            System.out.printf("%-10.0f", clicks[i]);
+            System.out.printf("%-10.0f", likes[i]);
+            System.out.printf("%10.2f\n", currentCost);
 
 
-                //, costPerThousand[i], costPerClick[i], costPerAction[i], impressions[i], clicks[i], likes[i]);
-                  i++;
+            //, costPerThousand[i], costPerClick[i], costPerAction[i], impressions[i], clicks[i], likes[i]);
+            i++;
 
-            }
+        }
 
 
 
@@ -145,11 +140,5 @@ public class AutosSimulationStandard {
         System.out.println("AVERAGE CPC: " + Math.round(totalCPC / i * 100.0) / 100.0 );
         System.out.println("AVERAGE CPA: " + Math.round(totalCPA / i * 100.0) / 100.0 );
         System.out.println("CTR: " +  Math.round((totalClicks / (double) totalImpressions * 100)*100.0)/100.0 + "%" );
-
-
-
-
-
-
     }
 }

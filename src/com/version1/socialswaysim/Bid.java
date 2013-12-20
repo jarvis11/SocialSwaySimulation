@@ -12,34 +12,30 @@ package com.version1.socialswaysim;
 public class Bid {
     private double CPM;
     private double CPC;
-    private double CPA;
+    private double medCPA;
+    private double highCPA;
+    private double lowCPA;
 
-    public Bid(double CPM, double CPC, double CPA){
+    public Bid(double CPM, double CPC, double medCPA, double highCPA, double lowCPA){
         this.CPM = CPM;
         this.CPC = CPC;
-        this.CPA = CPA;
+        this.medCPA = medCPA;
+        this.highCPA = highCPA;
+        this.lowCPA = lowCPA;
     }
 
     public double getCPM(){return CPM;}
 
     public double getCPC(){return CPC;}
 
-    public double getCPA(){return CPA;}
+    public double getMedCPA(){return medCPA;}
 
-    /**
-     * Method: Calculate Cost
-     * @param adGroup - Calculates the total cost incurred by an ad group
-     * @return - Returns the total cost incurred by the adGroup
-     *
-     * NOTE: METHOD IS NOT COMPLETE. CPA ONLY TAKES INTO ACCOUNT LIKES
-     */
+    public double getHighCPA(){return highCPA;}
+
+    public double getLowCPA(){return lowCPA;}
 
 
-    public double calculateCost(AdGroup adGroup){
-        double totalCost = CPM * adGroup.getUniqueImpressions() / 1000 +
-                           CPC * adGroup.getUniqueClicks() +
-                           CPA * adGroup.getLikes(); //AT THE MOMENT THIS IS ONLY SET UP FOR LIKES
 
-        return totalCost;
-    }
+
+
 }

@@ -55,19 +55,21 @@ public class DataParser {
                     counterBid = new Bid(
                             Double.parseDouble(group[0]),
                             Double.parseDouble(group[1]),
-                            Double.parseDouble(group[2]));
+                            Double.parseDouble(group[2]),
+                            Double.parseDouble(group[3]),
+                            Double.parseDouble(group[4]));
 
                     bidSet.add(counter, counterBid);
 
                     counterGroup = new AdGroup(
-                            Integer.parseInt(group[3]),
-                            Integer.parseInt(group[4]),
                             Integer.parseInt(group[5]),
                             Integer.parseInt(group[6]),
                             Integer.parseInt(group[7]),
                             Integer.parseInt(group[8]),
                             Integer.parseInt(group[9]),
                             Integer.parseInt(group[10]),
+                            Integer.parseInt(group[11]),
+                            Integer.parseInt(group[12]),
                             0,0,0,0,0,0,0,0,0);
 
 

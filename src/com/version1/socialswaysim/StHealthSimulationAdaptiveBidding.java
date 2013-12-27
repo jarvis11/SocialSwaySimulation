@@ -15,14 +15,14 @@ public class StHealthSimulationAdaptiveBidding {
         //Parse data
 
         DataParser obj = new DataParser();
-        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/Health_BiddingSim_TEST_AdaptiveBidding.csv");
+        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/SimulationDBs/HealthAB/Health_BiddingSim_TEST_AdaptiveBidding.csv");
 
         //bidData contains all bidding data by hour
         //adGroupData contains all adgroup data by hour
 
         //Header
         System.out.println("CAMPAIGN VERTICAL: Health");
-        System.out.println("CAMPAIGN GOAL: 2000 Page Likes");
+        System.out.println("CAMPAIGN GOAL: 2500 Page Likes");
         System.out.println("ADVERTISEMENT TYPE: Sponsored Story Page Post");
         System.out.println("BID TYPE: CPA, CPC, CPM");
         System.out.println("AD ACCOUNT: " + adGroupData.get(0).getAdAccountID());
@@ -55,7 +55,7 @@ public class StHealthSimulationAdaptiveBidding {
 
         double totalCost = 0;
         int totalLikes = 0;
-        int likesGoal = 2000;
+        int likesGoal = 2500;
         int totalImpressions = 0;
         int totalClicks = 0;
         double totalCPM = 0;

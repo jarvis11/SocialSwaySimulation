@@ -3,9 +3,9 @@ package com.version1.socialswaysim;
 import java.util.ArrayList;
 
 /**
- * Created by bhaskarravi on 12/21/13.
+ * Created by bhaskarravi on 12/23/13.
  */
-public class SocialSwayTelecomSimOCPM {
+public class SocialSwayHealthOCPM {
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class SocialSwayTelecomSimOCPM {
         ArrayList<Bid> bidDataTEST = new ArrayList<Bid>();
         ArrayList<AdGroup> adGroupDataTEST = new ArrayList<AdGroup>();
         DataParser objTEST = new DataParser();
-        objTEST.readData(bidDataTEST, adGroupDataTEST, "/Users/bhaskarravi/Desktop/SimulationDBs/Telecom/TelecomBiddingSimABTest.csv");
+        objTEST.readData(bidDataTEST, adGroupDataTEST, "/Users/bhaskarravi/Desktop/SimulationDBs/HealthAB/Health_BiddingSim_TEST_AdaptiveBidding.csv");
 
         //INITIALIZE LIVE ARRAYLISTS
         ArrayList<Integer> timeList = new ArrayList<Integer>();
@@ -44,8 +44,8 @@ public class SocialSwayTelecomSimOCPM {
         }
 
         //Header
-        System.out.println("CAMPAIGN VERTICAL: Telecom");
-        System.out.println("CAMPAIGN GOAL: 6000 Page Likes");
+        System.out.println("CAMPAIGN VERTICAL: Health");
+        System.out.println("CAMPAIGN GOAL: 2500 Page Likes");
         System.out.println("ADVERTISEMENT TYPE: Sponsored Story Page Post");
         System.out.println("BID TYPE: CPM, CPC, CPA, oCPM");
         System.out.println("AD ACCOUNT: " + adGroupDataTEST.get(0).getAdAccountID());
@@ -71,7 +71,7 @@ public class SocialSwayTelecomSimOCPM {
         //INITIALIZE CAMPAIGN VARS
         double totalCost = 0;   //Total Cost Incurred by the Campaign
         int totalLikes = 0;     //Total Likes Accrued by Campaign
-        int likesGoal = 6000;   //Campaign Goal
+        int likesGoal = 2500;   //Campaign Goal
         int totalImpressions = 0; //Total Impressions Accrued by Campaign
         int totalClicks = 0;    //Total Clicks Accrued by Campaign
         double totalCPM = 0;    //Total CPM Cost of Campaign
@@ -178,7 +178,7 @@ public class SocialSwayTelecomSimOCPM {
                 //else bid on CPM or CPC, whichever is cheaper
 
                 //CHECK IF REG PREDICTS A SUPERSTAR
-                if(likesReg.predict(hour+1) > 50 && likes[hour - 1] > 20){ //use rolling averages instead of purely training set data
+                if(likesReg.predict(hour+1) > 25 && likes[hour - 1] > 3){ //use rolling averages instead of purely training set data
                     //MAKE CPA ONLY BID
                     timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                     impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
@@ -219,7 +219,7 @@ public class SocialSwayTelecomSimOCPM {
                     //LIKES IS NOT A MAJOR FACTOR ANY LONGER, SO LETS GO INTO COST SAVING MODE
                     //IF YOU ARE GOING TO CAPTURE SOME LIKES BUT NOT A LOT BID MED
 
-                    if(likesReg.predict(hour+1) < 50 && likes[hour - 1] > 10){
+                    if(likesReg.predict(hour+1) < 25 && likes[hour - 1] > 3){
 
                         if(impressionsReg.predict(hour+1) * costPerThousand[hour] / 1000 >
                                 likesReg.predict(hour+1)*medCPA[hour])

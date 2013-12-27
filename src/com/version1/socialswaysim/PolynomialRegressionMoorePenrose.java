@@ -418,63 +418,64 @@ public class PolynomialRegressionMoorePenrose {
      *
      */
 
-    //METHOD NOT YET STABLE
+    public String print2DMatrix() {
+        String s = "";
+        int j = degree;
+        int index;
 
-//    public String print2DMatrix() {
-//        String s = "";
-//        int j = degree;
-//        int index;
-//
-//        while(Math.abs(getCoeffs(j)) < 1E-5){
-//            j--;
-//        }
-//
-//        for(index = 0; index <= degree; index++){
-//            if(index== 0) {
-//                s += String.format("%.2f + ", getCoeffs(index));
-//            }
-//            else if (index==1){
-//                s += String.format("%.2f N1 + ", getCoeffs(index));
-//            }
-//            else {
-//                s+= String.format("%.2f N1^%d + ", getCoeffs(index), index);
-//            }
-//
-//        }
-//
-//        for(j = 1; j <= degree; j++)
-//        {
-//            if(j==1){
-//                s += String.format("%.2f N2 + ", getCoeffs(index));
-//            }
-//            else {
-//                s+= String.format("%.2f N1^%d + ", getCoeffs(index), j);
-//            }
-//            index++;
-//        }
-//
-//        for(int i = 1; i < degree; i++ ){
-//            for(j = 1; j < degree; j++ ){
-//                if(i == 1 && j != 1){
-//                    s+= String.format("%.2f N1 N2^%d + ", getCoeffs(index), j);
-//                }
-//                else if(j == 1 && i != 1){
-//                    s+= String.format("%.2f N1^%d N2 + ", getCoeffs(index), i);
-//                }
-//                else if(i == 1 && j == 1){
-//                    s+= String.format("%.2f N1 N2 + ", getCoeffs(index));
-//                }
-//                else{
-//                    s+= String.format("%.2f N1^%d N2^%d + ", getCoeffs(index), i, j);
-//                }
-//
-//                index++;
-//            }
-//        }
-//
-//
-//        return s+ "  (R^2 = " + String.format("%.3f", getR2()) + ")";
-//    }
+        while(Math.abs(getCoeffs(j)) < 1E-5){
+            j--;
+        }
+
+        for(index = 1; index <= degree; index++){
+            if (index==1){
+                s += String.format("%.2f N1 + ", getCoeffs(index));
+            }
+            else {
+                s+= String.format("%.2f N1^%d + ", getCoeffs(index), index);
+            }
+
+        }
+
+        for(j = 1; j <= degree; j++)
+        {
+            if(j==1){
+                s += String.format("%.2f N2 + ", getCoeffs(index));
+            }
+            else {
+                s+= String.format("%.2f N2^%d + ", getCoeffs(index), j);
+            }
+            index++;
+        }
+
+        for(int i = 1; i < degree; i++ ){
+            for(j = 1; j < degree; j++ ){
+                if(i+j <= degree){
+                    if(i == 1 && j != 1){
+                        s+= String.format("%.2f N1 N2^%d + ", getCoeffs(index), j);
+                    }
+                    else if(j == 1 && i != 1){
+                        s+= String.format("%.2f N1^%d N2 + ", getCoeffs(index), i);
+                    }
+                    else if(i == 1 && j == 1){
+                        s+= String.format("%.2f N1 N2 + ", getCoeffs(index));
+                    }
+                    else{
+                        s+= String.format("%.2f N1^%d N2^%d + ", getCoeffs(index), i, j);
+                    }
+
+                    index++;
+                }
+            }
+        }
+
+        //Add constant to equation
+        s += String.format("%.2f", getCoeffs(0));
+
+
+
+        return s+ "  (R^2 = " + String.format("%.3f", getR2()) + ")";
+    }
 
     /**
      *
@@ -489,15 +490,15 @@ public class PolynomialRegressionMoorePenrose {
         double[] CTR = {0.1, 0.057, .027, .012, .00794, .005};
         PolynomialRegressionMoorePenrose regression = new PolynomialRegressionMoorePenrose(x1, x2,  y, 2);
         PolynomialRegressionMoorePenrose regression1D = new PolynomialRegressionMoorePenrose(x2, y, 3);
-        PolynomialRegressionMoorePenrose regression3 = new PolynomialRegressionMoorePenrose(x1, y, CTR, 2);
+        PolynomialRegressionMoorePenrose regression3 = new PolynomialRegressionMoorePenrose(x1, y, CTR, 1);
 
         System.out.println(regression1D);
-//        System.out.println(regression.print2DMatrix());
+        System.out.println(regression3.print2DMatrix());
         System.out.println(regression.predict(40, 450));
 
 
 //        System.out.println(regression3.print2DMatrix());
-        System.out.println(regression3.predict(60, 600));
+        System.out.println(regression3.predict(80, 6700));
 
         //System.out.println(regression3.print2DMatrix());
 //        System.out.println(regression);

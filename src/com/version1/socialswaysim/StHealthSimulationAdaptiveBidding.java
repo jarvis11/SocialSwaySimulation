@@ -87,6 +87,7 @@ public class StHealthSimulationAdaptiveBidding {
 
             costPerClick[i] = 0;
             costPerThousand[i] = 0;
+            //highCPA[i] = 0;
             medCPA[i] = 0;
             lowCPA[i] = 0;
 

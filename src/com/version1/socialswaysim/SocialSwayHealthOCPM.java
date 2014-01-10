@@ -23,7 +23,7 @@ public class SocialSwayHealthOCPM {
         ArrayList<Integer> timeList = new ArrayList<Integer>();
         ArrayList<Integer> impressionsList = new ArrayList<Integer>();
         ArrayList<Integer> clicksList = new ArrayList<Integer>();
-        ArrayList<Integer> likesList = new ArrayList<Integer>();
+        ArrayList<Double> likesList = new ArrayList<Double>();
 
         //INITIALIZE BIDDING VECTORS
         double[] medCPA = new double[bidDataTEST.size()];
@@ -70,7 +70,7 @@ public class SocialSwayHealthOCPM {
 
         //INITIALIZE CAMPAIGN VARS
         double totalCost = 0;   //Total Cost Incurred by the Campaign
-        int totalLikes = 0;     //Total Likes Accrued by Campaign
+        double totalLikes = 0;     //Total Likes Accrued by Campaign
         int likesGoal = 2500;   //Campaign Goal
         int totalImpressions = 0; //Total Impressions Accrued by Campaign
         int totalClicks = 0;    //Total Clicks Accrued by Campaign
@@ -90,7 +90,7 @@ public class SocialSwayHealthOCPM {
                 timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                 impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
                 clicksList.add(adGroupDataTEST.get(hour).getUniqueClicks());
-                likesList.add(adGroupDataTEST.get(hour).getLikes());
+                likesList.add((double)adGroupDataTEST.get(hour).getLikes());
 
                 //MAKING CPC BID 0 -- MAKING CPA AND CPM BID ONLY
                 costPerClick[hour] = 0;
@@ -107,7 +107,7 @@ public class SocialSwayHealthOCPM {
                 totalCPA += lowCPA[hour];
                 hourlyCost = (costPerThousand[hour]*adGroupDataTEST.get(hour).getUniqueImpressions()/1000) +
                         (costPerClick[hour]* clicksList.get(hour)) +
-                        (lowCPA[hour]* (likesList.get(hour)*.5));;
+                        (lowCPA[hour]* (likesList.get(hour)*.5));
 
                 totalCost += hourlyCost;
 
@@ -123,7 +123,7 @@ public class SocialSwayHealthOCPM {
                 System.out.printf("%-10.2f", lowCPA[hour]);
                 System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                 System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                System.out.printf("%-10.0f", (double)likesList.get(hour) * .5);
+                System.out.printf("%-10.2f",  likesList.get(hour) * .5);
                 System.out.printf("%10.2f\n", hourlyCost);
             }
             else {
@@ -183,7 +183,7 @@ public class SocialSwayHealthOCPM {
                     timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                     impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
                     clicksList.add(adGroupDataTEST.get(hour).getUniqueClicks());
-                    likesList.add(adGroupDataTEST.get(hour).getLikes());
+                    likesList.add((double)adGroupDataTEST.get(hour).getLikes());
 
                     //CPM AND CPC BID GO TO ZERO
                     costPerThousand[hour] = 0;
@@ -212,7 +212,7 @@ public class SocialSwayHealthOCPM {
                     System.out.printf("%-10.2f", highCPA[hour]);
                     System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                     System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                    System.out.printf("%-10.0f", (double)likesList.get(hour));
+                    System.out.printf("%-10.2f", likesList.get(hour));
                     System.out.printf("%10.2f\n", hourlyCost);
                 }
                 else{
@@ -227,7 +227,7 @@ public class SocialSwayHealthOCPM {
                             timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                             impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
                             clicksList.add(adGroupDataTEST.get(hour).getUniqueClicks());
-                            likesList.add(adGroupDataTEST.get(hour).getLikes());
+                            likesList.add((double)adGroupDataTEST.get(hour).getLikes());
 
                             //MED CPA
                             highCPA[hour] = 0;
@@ -256,7 +256,7 @@ public class SocialSwayHealthOCPM {
                             System.out.printf("%-10.2f", medCPA[hour]);
                             System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                             System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                            System.out.printf("%-10.0f", (double)likesList.get(hour) * .75);
+                            System.out.printf("%-10.2f",  likesList.get(hour) * .75);
                             System.out.printf("%10.2f\n", hourlyCost);
 
                         }
@@ -265,7 +265,7 @@ public class SocialSwayHealthOCPM {
                             timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                             impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
                             clicksList.add(adGroupDataTEST.get(hour).getUniqueClicks());
-                            likesList.add(adGroupDataTEST.get(hour).getLikes());
+                            likesList.add((double)adGroupDataTEST.get(hour).getLikes());
 
                             //MED CPA
                             highCPA[hour] = 0;
@@ -294,7 +294,7 @@ public class SocialSwayHealthOCPM {
                             System.out.printf("%-10.2f", medCPA[hour]);
                             System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                             System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                            System.out.printf("%-10.0f", (double)likesList.get(hour) * .9);
+                            System.out.printf("%-10.2f",  likesList.get(hour) * .9);
                             System.out.printf("%10.2f\n", hourlyCost);
 
                         }
@@ -306,7 +306,7 @@ public class SocialSwayHealthOCPM {
                         timeList.add(adGroupDataTEST.get(hour).getTimeStamp());
                         impressionsList.add(adGroupDataTEST.get(hour).getUniqueImpressions());
                         clicksList.add(adGroupDataTEST.get(hour).getUniqueClicks());
-                        likesList.add(adGroupDataTEST.get(hour).getLikes());
+                        likesList.add((double)adGroupDataTEST.get(hour).getLikes());
 
                         //LOW CPA ONLY
                         highCPA[hour] = 0;
@@ -335,7 +335,7 @@ public class SocialSwayHealthOCPM {
                         System.out.printf("%-10.2f", lowCPA[hour]);
                         System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                         System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                        System.out.printf("%-10.0f", (double)likesList.get(hour) * .5);
+                        System.out.printf("%-10.2f",  likesList.get(hour) * .5);
                         System.out.printf("%10.2f\n", hourlyCost);
 
                     }

@@ -15,7 +15,7 @@ public class StandardTelecomSim {
         //Parse data
 
         DataParser obj = new DataParser();
-        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/TelecomBiddingSimABTest.csv");
+        obj.readData(bidData, adGroupData, "/Users/bhaskarravi/Desktop/SimulationDBs/Telecom/TelecomBiddingSimABTest.csv");
 
         //bidData contains all bidding data by hour
         //adGroupData contains all adgroup data by hour
@@ -54,7 +54,7 @@ public class StandardTelecomSim {
         double[] costPerThousand = new double[bidData.size()];
 
         double totalCost = 0;
-        int totalLikes = 0;
+        double totalLikes = 0;
         int likesGoal = 6000;
         int totalImpressions = 0;
         int totalClicks = 0;
@@ -87,20 +87,20 @@ public class StandardTelecomSim {
 
             costPerClick[i] = 0;
             costPerThousand[i] = 0;
-            highCPA[i] = 0;
-            //medCPA[i] = 0;
+            //highCPA[i] = 0;
+            medCPA[i] = 0;
             lowCPA[i] = 0;
 
             totalCPM += costPerThousand[i];
             totalCPC += costPerClick[i];
-            totalCPA += medCPA[i];
+            totalCPA += highCPA[i];
 
 
             totalImpressions += impressions[i];
             totalClicks += clicks[i];
-            totalLikes += likes[i]*.75;
+            totalLikes += likes[i];
             currentCost = (costPerThousand[i]*adGroupData.get(i).getUniqueImpressions()/1000) +
-                    (costPerClick[i]*clicks[i]) + (medCPA[i]*(likes[i]*.75));
+                    (costPerClick[i]*clicks[i]) + (highCPA[i]*(likes[i]));
             totalCost += currentCost;
 
 
@@ -111,7 +111,7 @@ public class StandardTelecomSim {
             System.out.printf("%-10.2f", highCPA[i]);
             System.out.printf("%-15.0f", impressions[i]);
             System.out.printf("%-10.0f", clicks[i]);
-            System.out.printf("%-10.0f", likes[i] *.75);
+            System.out.printf("%-10.0f", likes[i]);
             System.out.printf("%10.2f\n", currentCost);
 
 

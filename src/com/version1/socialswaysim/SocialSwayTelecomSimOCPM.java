@@ -114,7 +114,7 @@ public class SocialSwayTelecomSimOCPM {
                 //UPDATE YOUR STATS
                 totalImpressions += impressionsList.get(hour);
                 totalClicks += clicksList.get(hour);
-                totalLikes += likesList.get(hour)*.5;
+                totalLikes += Math.round(likesList.get(hour)*.5);
 
 
                 //PRINT RESULTS
@@ -124,7 +124,7 @@ public class SocialSwayTelecomSimOCPM {
                 System.out.printf("%-10.2f", lowCPA[hour]);
                 System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                 System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                System.out.printf("%-10.2f", likesList.get(hour) * .5);
+                System.out.printf("%-10.0f", (double)Math.round(likesList.get(hour) * .5));
                 System.out.printf("%10.2f\n", hourlyCost);
             }
             else {
@@ -204,7 +204,7 @@ public class SocialSwayTelecomSimOCPM {
                     //UPDATE YOUR STATS
                     totalImpressions += impressionsList.get(hour);
                     totalClicks += clicksList.get(hour);
-                    totalLikes += likesList.get(hour);
+                    totalLikes += Math.round(likesList.get(hour));
                      //PRINT RESULTS
                     System.out.printf("%-10.0f", (double)timeList.get(hour));
                     System.out.printf("%-10.2f", costPerThousand[hour]);
@@ -212,7 +212,7 @@ public class SocialSwayTelecomSimOCPM {
                     System.out.printf("%-10.2f", highCPA[hour]);
                     System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                     System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                    System.out.printf("%-10.2f", likesList.get(hour));
+                    System.out.printf("%-10.0f", (double)Math.round(likesList.get(hour)));
                     System.out.printf("%10.2f\n", hourlyCost);
                 }
                 else{
@@ -247,7 +247,7 @@ public class SocialSwayTelecomSimOCPM {
                             //UPDATE YOUR STATS
                             totalImpressions += impressionsList.get(hour);
                             totalClicks += clicksList.get(hour);
-                            totalLikes += likesList.get(hour) * .75;
+                            totalLikes += Math.round(likesList.get(hour) * .75);
 
 
                             //PRINT RESULTS
@@ -257,7 +257,7 @@ public class SocialSwayTelecomSimOCPM {
                             System.out.printf("%-10.2f", medCPA[hour]);
                             System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                             System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                            System.out.printf("%-10.2f",  likesList.get(hour) * .75);
+                            System.out.printf("%-10.0f",  (double)Math.round(likesList.get(hour) * .75));
                             System.out.printf("%10.2f\n", hourlyCost);
 
                         }
@@ -286,7 +286,7 @@ public class SocialSwayTelecomSimOCPM {
                             //UPDATE YOUR STATS
                             totalImpressions += impressionsList.get(hour);
                             totalClicks += clicksList.get(hour);
-                            totalLikes += likesList.get(hour) * .9;
+                            totalLikes += Math.round(likesList.get(hour) * .9);
 
 
                             //PRINT RESULTS
@@ -296,7 +296,7 @@ public class SocialSwayTelecomSimOCPM {
                             System.out.printf("%-10.2f", medCPA[hour]);
                             System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                             System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                            System.out.printf("%-10.2f",  likesList.get(hour) * .9);
+                            System.out.printf("%-10.0f",  (double)Math.round(likesList.get(hour) * .9));
                             System.out.printf("%10.2f\n", hourlyCost);
 
                         }
@@ -328,7 +328,7 @@ public class SocialSwayTelecomSimOCPM {
                         //UPDATE YOUR STATS
                         totalImpressions += impressionsList.get(hour);
                         totalClicks += clicksList.get(hour);
-                        totalLikes += likesList.get(hour)*.5;
+                        totalLikes += Math.round(likesList.get(hour)*.5);
 
 
                         //PRINT RESULTS
@@ -338,7 +338,7 @@ public class SocialSwayTelecomSimOCPM {
                         System.out.printf("%-10.2f", lowCPA[hour]);
                         System.out.printf("%-15.0f", (double)impressionsList.get(hour));
                         System.out.printf("%-10.0f", (double)clicksList.get(hour));
-                        System.out.printf("%-10.2f",  likesList.get(hour) * .5);
+                        System.out.printf("%-10.0f",  (double)Math.round(likesList.get(hour) * .5));
                         System.out.printf("%10.2f\n", hourlyCost);
 
                     }
@@ -359,7 +359,7 @@ public class SocialSwayTelecomSimOCPM {
         System.out.println("TOTAL IMPRESSIONS: " + totalImpressions);
         System.out.println("TOTAL CLICKS: " + totalClicks);
 
-        System.out.println("TOTAL LIKES: " + totalLikes);
+        System.out.println("TOTAL LIKES: " + (int)totalLikes);
         System.out.println("AVERAGE CPM: " + Math.round(totalCPM / hour * 100.0) / 100.0 );
         System.out.println("AVERAGE CPC: " + Math.round(totalCPC / hour * 100.0) / 100.0 );
         System.out.println("AVERAGE CPA: " + Math.round(totalCPA / hour * 100.0) / 100.0 );
